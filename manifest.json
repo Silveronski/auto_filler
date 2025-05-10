@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Filler",
+  "version": "0.1.0",
+  "description": "Autofills forms with your details",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon_16x16.png",
+      "32": "icons/icon_32x32.png",
+      "48": "icons/icon_48x48.png",
+      "128": "icons/icon_128x128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/const.js", "js/autoFillForm.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:35729; object-src 'self';"
+  }
+}
