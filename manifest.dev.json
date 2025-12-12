@@ -21,5 +21,8 @@
       "run_at": "document_idle",
       "all_frames": true
     }
-  ]
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:35729; object-src 'self';"
+  }
 }

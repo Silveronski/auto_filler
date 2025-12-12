@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "livereload": "^0.9.3"
+  },
+  "scripts": {
+    "manifest:dev": "node -e \"require('fs').copyFileSync('manifest.dev.json','manifest.json')\"",
+    "manifest:prod": "node -e \"require('fs').copyFileSync('manifest.prod.json','manifest.json')\"",
+    "build:prod": "npm run manifest:prod && node build.js"
   }
 }
