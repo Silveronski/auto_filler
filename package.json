@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "archiver": "^7.0.1",
     "livereload": "^0.9.3"
   },
   "scripts": {

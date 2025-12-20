@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const archiver = require("archiver");
 
 const BUILD_DIR = "build";
+const ZIP_NAME = path.join(BUILD_DIR, "auto_filler.zip");
 
 // clean build folder
 fs.rmSync(BUILD_DIR, { recursive: true, force: true });
@@ -22,4 +24,15 @@ DIRS.forEach((dir) => {
   fs.cpSync(dir, path.join(BUILD_DIR, dir), { recursive: true });
 });
 
-console.log("✅ Production build ready in /build");
+const output = fs.createWriteStream(ZIP_NAME);
+const archive = archiver("zip", { zlib: { level: 9 } });
+
+archive.pipe(output);
+
+archive.directory(BUILD_DIR, false);
+
+archive.finalize();
+
+output.on("close", () => {
+  console.log(`✅ Build complete`);
+});
